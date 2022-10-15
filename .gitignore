@@ -1,0 +1,13 @@
+# ignore ALL .log files
+*.log
+
+# ignore ALL files in ANY directory named ...
+.git/
+__pycache__/
+classes/__pycache__/
+classes/private.py
+env/
+flask_session/
+app_config_b2c.py
+app_config.py
+filemon.code-workspace

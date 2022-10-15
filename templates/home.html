@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Meta data -->
+    {% include 'sections/metadata.html' %}
+
+    <!-- Títol i Favicons -->
+    <title>Filemon</title>
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="//www.mesural.com/lib/bootstrap/bootstrap.css">
+    
+    <!-- CSS Custom -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/style.css") }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/responsive.css") }}" media="screen">
+
+    <!-- Scripts Libraries -->
+    <!-- Scripts custom -->
+</head>
+
+<body>
+    <div class="main-wrapper">
+        {{ text }}
+
+    <!-- JavaScripts basics -->
+    <script src="//app.cuantime.es/assets/libs/jquery/jquery.min.js"></script>
+    <script src="//app.cuantime.es/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScripts custom -->
+    <script src="{{ url_for("static", filename="js/script.js") }}"></script>
+    <!-- Scripts custom -->
+</body>
+</html>
