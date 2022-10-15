@@ -2,7 +2,10 @@
 *.log
 
 # ignore ALL files in ANY directory named ...
+<<<<<<< HEAD
 .git/
+=======
+>>>>>>> ccf68d7182e6cc94b867054270df4f178295b769
 __pycache__/
 classes/__pycache__/
 classes/private.py
