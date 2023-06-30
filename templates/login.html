@@ -6,7 +6,7 @@
     {% include 'sections/metadata.html' %}
 
     <!-- Títol i Favicons -->
-    <title>Filemon</title>
+    <title>Super</title>
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="//www.mesural.com/lib/bootstrap/bootstrap.css">
@@ -24,14 +24,14 @@
 <div class="content">
   <div class="franja-central">
     <div class="logo">
-      <a href="{{ url_for('index') }}" class="desktop-logo"><img src="{{ url_for("static", filename="img/logo-login.png") }}" alt="Logo Filemón"></a>
-      <a href="{{ url_for('index') }}" class="responsive-logo"><img src="{{ url_for("static", filename="img/logo.png") }}" alt="Logo Filemón"></a>
+      <a href="#" class="desktop-logo"><img src="{{ url_for("static", filename="img/logo-login.png") }}" alt="Logo Filemón"></a>
+      <a href="#" class="responsive-logo"><img src="{{ url_for("static", filename="img/logo.png") }}" alt="Logo Filemón"></a>
     </div>
 
     <div class="box box-login box-shadow">
       <div class="login-title">Inicia sesión en tu cuenta</div>
 
-      <form class="form-signin" action="conexiones/validar_usuario" method="post">
+      <form class="form-signin" method="post">
       <div class="login-input">
         <label for="email">Correo electrónico</label>
         <input type="text" id="email" name="email" placeholder="gavin@hooli.com" required>
@@ -40,8 +40,8 @@
       </div>
 
       <div class="submit-zone">
-        <button class="btn-access disabled" type="submit">Continuar</button>
-        <a href="{{ auth_url }}" class="btn-signwith" style="margin-top:15px">
+        <button class="btn-access" type="submit">Continuar</button>
+        <a href="#" class="btn-signwith disabled" style="margin-top:15px">
         <svg style="height: 15px;margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="#ffffff" d="M1 1h10v10H1z"/><path fill="#ffffff" d="M12 1h10v10H12z"/><path fill="#ffffff" d="M1 12h10v10H1z"/><path fill="#ffffff" d="M12 12h10v10H12z"/></svg>
          Login with Microsoft</a>
       </div>

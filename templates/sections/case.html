@@ -1,0 +1,73 @@
+<div class="case_of_study">
+    <h2>{{ title }}</h2>
+
+    <!-- Etiquetes de projectes -->
+    <div class="project-tags">
+        <div class="component-header"></div>
+        {% for key, value in projects.items() %}
+            {% set i = loop.index0 %}
+            {% set bg_color = value %}
+            {% if i == 0 %}
+                <div class="{{ bg_color }} cheight">{{ key }}</div>
+            {% else %}
+                <div class="{{ bg_color }} cheight mt-3">{{ key }}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Zona de scroll horitzontal -->
+    <div class="components-row scroll-x">
+        <!-- Header de cada component -->
+        <div class="component-header">
+            {% for key, case in headers.items() %}
+                {% if key == title %}
+                    {% for header in case %}
+                        <div class="component-title">
+                            <div class="c-title">
+                                <span class="code-title">{{ header.code }}</span>{{ header.name|safe }}
+                            </div>
+                            <div class="c-blind-cost">
+                                <div class="c-status status-{{ header.status }}">{{ header.status }}</div>
+                                {{ header.blind_cost }} €/m<sup>2</sup>
+                            </div>
+                            <div class="component-description">
+                                {{ header.feature }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% for key, value in components.items() %}
+            {% if key == title %}
+                {% for project, components in value.items() %}
+                    <div class="project-subrow">
+                        {% for component in components %}
+                            {% if component.img == 'no-img' %}
+                                <div class="component-object border cheight"></div>
+                            {% else %}
+                                <div class="component-object border cheight blank-bg">
+                                    <div class="component-layout">
+                                        <img src="../static/img/components/{{ component.img }}" />
+                                    </div>
+                                    <div class="c-costs">
+                                        {% if component.case_cost == '0,00' %}
+                                        {% else %}
+                                            <span>Case:</span> {{ component.case_cost }} €/m<sup>2</sup><br>
+                                        {% endif %}
+
+                                        {% if component.rat_cost == '0,00' %}
+                                        {% else %}
+                                            <span>RAT:</span> {{ component.rat_cost }} €/m<sup>2</sup>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

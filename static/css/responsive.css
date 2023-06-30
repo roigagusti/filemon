@@ -1,0 +1,68 @@
+/*
+* Title: Filemon
+* Author: 011h
+* Template: Filemon
+* Version: 0.2
+* Copyright 2023 011h
+* Url: https://filemon.lab.011h.com
+
+
+Content table
+--------------
+1. Devices < width: 1199px
+2. Devices < width: 1060px
+3. Devices < width: 991px
+4. Devices < width: 767px
+5. Devices < width: 460px
+6. Responsive menu
+1. Devices < width: 1199px
+2. Devices < width: 1060px
+3. Devices < width: 991px
+4. Devices < width: 767px
+5. Devices < width: 460px
+6. Responsive menu
+
+/* ----- Base ----- */
+.responsive-blur{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 6;
+	top: 0;
+	background: #fff;
+	background: rgba(247,250,252,0.85);
+	backdrop-filter: blur(3px);
+	-webkit-backdrop-filter: blur(3px);
+}
+/* ----- Devices < width: 1492px ----- */
+@media (max-width: 1492px) {
+}
+/* ----- Devices < width: 991px ----- */
+@media (max-width: 991px) {
+}
+
+/* ----- Devices < width: 770px ----- */
+@media (max-width: 767px) {
+}
+
+/* ----- Devices < width: 714px ----- */
+@media (max-width: 714px) {
+}
+
+/* ----- Devices < width: 468px ----- */
+@media (max-width: 468px) {
+	header{
+		background-color: #487767 !important;
+		color: #fff;
+		z-index: 7;
+	}
+	.header-bars svg{
+		fill: #fff !important;
+	}
+	.logo-base{
+	  display:none !important;
+	}
+	.logo-responsive{
+	  display:block !important;
+	}
+}
