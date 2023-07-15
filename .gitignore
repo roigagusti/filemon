@@ -7,6 +7,8 @@ __pycache__/
 classes/__pycache__/
 classes/private.py
 env/
+static/ifc
+static/export
 flask_session/
 app_config_b2c.py
 app_config.py

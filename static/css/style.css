@@ -474,7 +474,24 @@ header{
   cursor: pointer;
   height: 65px;
   color:#999;
+  margin-bottom:20px;
 }
 #drop-area.highlight {
   background-color: #f7f7f7;
+}
+.entity-class{
+  margin-bottom:10px;
+}
+.btn-entity{
+  border-color:#ccc;
+  color:#ccc;
+}
+.btn-entity:hover{
+  background-color: #487767;
+  border-color:#487767;
+  color:#fff;
+}
+.selected-entity{
+  border-color:#487767;
+  color:#487767;
 }

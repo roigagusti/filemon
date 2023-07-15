@@ -3,6 +3,7 @@ import pandas as pd
 import io
 from classes.functions import *
 from classes.rompeflix import putMediaRT
+from classes.ifc import getIFCInfo
 
 app = Flask(__name__)
 
@@ -87,7 +88,25 @@ def downloadList():
 #IFC files
 @app.route('/ifc')
 def ifc():
-    return render_template('ifc.html')
+    return render_template('ifc.html',export=False)
+
+@app.route('/ifc/analytics',methods=['POST'])
+def ifcAnalytics():  
+    c = int(request.form['entity_C'])
+    eu = int(request.form['entity_EU']) 
+    lg = int(request.form['entity_LG'])
+    op = int(request.form['entity_OP'])
+    mep = int(request.form['entity_MEPBox'])
+    box = int(request.form['entity_Box'])
+    h = int(request.form['entity_H'])
+    ps = int(request.form['entity_PS'])
+    entities = [c,eu,lg,op,mep,box,h,ps]
+    ifc_file = request.files['ifcfile']
+    path = 'static/ifc/ifc_file.ifc'
+    ifc_file.save(path)
+    getIFCInfo(path,entities)
+    return render_template('ifc.html',export=True)
+    
 
 # ROMPEFLIX
 @app.route('/rompeflix')
