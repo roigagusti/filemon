@@ -6,7 +6,7 @@
     {% include 'sections/metadata.html' %}
 
     <!-- Títol i Favicons -->
-    <title>Filemon. Components</title>
+    <title>Filemon. Rompeflix</title>
 
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="//www.mesural.com/lib/bootstrap/bootstrap.css">
@@ -37,13 +37,20 @@
             <div class="page-content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="mb-4">Components</h1>
+                        <div class="col-md-4">
+                            <h1>Rompeflix</h1>
+
+                            <div class="form-group">  
+                                <p class="text-muted mb-2">Para actualizar Rompeflix es necesario acceder desde Airtable con los permisos correctos</p>
+                                <a href="https://airtable.com/appd2t4eco5DcWYGI/pagziGhgz25llcqit" target="_blank" style="color:#34c38f">Ir a Airtable</a>
+                            </div>
                             
-                            {% for case in cases %}
-                                {% set title = case %}
-                                {% include 'sections/case.html' %}
-                            {% endfor %}
+                            {% if sync %}
+                            <div class='alert alert-success'>
+                                <strong>{{actualitzat}}</strong> demos actualizadas,
+                                <strong>{{inserit}}</strong> demos insertadas.
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

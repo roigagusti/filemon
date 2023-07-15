@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Meta data -->
+    {% include 'sections/metadata.html' %}
+
+    <!-- Títol i Favicons -->
+    <title>Filemon. Solicitar SKU</title>
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="//www.mesural.com/lib/bootstrap/bootstrap.css">
+        
+    <link href="//011h.agustiroig.com/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="//011h.agustiroig.com/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="//011h.agustiroig.com/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="//011h.agustiroig.com/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="//011h.agustiroig.com/assets/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <link href="//011h.agustiroig.com/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="//011h.agustiroig.com/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+    
+    <!-- CSS Custom -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/style.css") }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/responsive.css") }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="css/011h.css") }}" media="screen">
+
+    <!-- Scripts Libraries -->
+    <script src="//011h.agustiroig.com/lib/bootstrap/js/bootstrap.js"></script>
+    <!-- Scripts custom -->
+</head>
+
+<body>
+    {% include 'sections/header.html' %}
+    <!-- Contingut de pàgina -->
+    <div class="content">
+        <div id="layout-wrapper">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h1>IFC inspect</h1>
+
+                            <!-- Subir archivo IFC -->
+                            <div class="form-group" id="inputIfc">
+                                <label for="" class="form-label">Subir archivo IFC</label>
+                                <p class="text-muted mb-2">Manualmente</p>
+                                
+                                <a data-toggle="modal" data-target="#uploadIfc"><p class="input-file-text" style="width:60px">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" class="flex-none mr-half" style="shape-rendering: geometricPrecision;"><path fill-rule="evenodd" fill="currentColor" d="M9.5,5 L7,5 L7,2.5 C7,2.224 6.776,2 6.5,2 L5.5,2 C5.224,2 5,2.224 5,2.5 L5,5 L2.5,5 C2.224,5 2,5.224 2,5.5 L2,6.5 C2,6.776 2.224,7 2.5,7 L5,7 L5,9.5 C5,9.776 5.224,10 5.5,10 L6.5,10 C6.776,10 7,9.776 7,9.5 L7,7 L9.5,7 C9.776,7 10,6.776 10,6.5 L10,5.5 C10,5.224 9.776,5 9.5,5"></path></svg>
+                                    Add
+                                </p></a>
+                                <br>
+                            </div>
+
+                            <!-- OR --
+                            <div class="separator"><p class="or">or</p></div>
+
+                            <-- Subir archivo IFC --
+                            <div class="form-group">
+                                <label for="" class="form-label">Conectar con BimSync</label>
+                                <p class="text-muted mb-2">Visualizar archivos IFC remotos</p>
+                                
+                                <a data-toggle="modal" data-target="#connectBimSync"><p class="input-file-text" style="width:85px">
+                                    <svg height="12" viewBox="0 0 640 512"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>
+                                    Connect
+                                </p></a>
+                                <br>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'sections/modal-bimSync.html' %}
+    {% include 'sections/modal-uploadIfc.html' %}
+
+
+    <!-- JavaScripts basics -->
+    <script src="//011h.agustiroig.com/assets/libs/jquery/jquery.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/node-waves/waves.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
+
+    <script src="//011h.agustiroig.com/assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/js/pages/dashboard.init.js"></script>
+    <script src="//011h.agustiroig.com/assets/js/pages/form-advanced.init.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/select2/js/select2.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="//011h.agustiroig.com/assets/js/pages/table-responsive.init.js"></script>
+    <!-- JavaScripts custom -->
+    
+    <script src="//011h.agustiroig.com/assets/js/app.js"></script>
+    <script type="text/javascript" src="{{ url_for("static", filename="js/011h.js") }}" ></script>
+    <!-- Scripts custom -->
+    <script>
+    function changeBlur(){
+        $("div.responsive-blur").hasClass("hidden") ? $("div.responsive-blur").removeClass("hidden") : $("div.responsive-blur").addClass("hidden");
+        $("div.menu").hasClass("hidden") ? $("div.menu").removeClass("hidden") : $("div.menu").addClass("hidden");
+    }
+
+    // IFC Files drag and drop
+    var dropArea = document.getElementById('drop-area');
+    var fileInput = document.getElementById('fileinput');
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+    });
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, highlight, false);
+    });
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, unhighlight, false);
+    });
+    function highlight() {
+        dropArea.classList.add('highlight');
+    }
+    function unhighlight() {
+        dropArea.classList.remove('highlight');
+    }
+    dropArea.addEventListener('click', function() {
+        fileInput.click();
+    });
+    dropArea.addEventListener('drop', handleDrop, false);
+    function handleDrop(e) {
+        var file = e.dataTransfer.files[0]; // Get the first dropped file
+        fileInput.files = e.dataTransfer.files; // Assign the dropped file to the file input element
+        console.log(file.name); // Example: Output file name
+    }
+    fileInput.addEventListener('change', handleFiles, false);
+    function handleFiles(e) {
+        var files = e.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            console.log(file.name);
+        }
+    }
+
+    $("#fileinput").change(function(){
+        var inputHiddenValue = $(this).val();
+        inputHiddenValue = inputHiddenValue.split('\\').pop();
+        $("#drop-area").html(inputHiddenValue);
+    });
+    </script>
+</body>
+</html>

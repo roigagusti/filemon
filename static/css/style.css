@@ -21,7 +21,8 @@ Content table
 /* ----- 0. Basics ----- */
 html {height:100%} 
 body{
-  background-color: #487767;
+  /*background-color: #487767;*/
+  background-color: #fafafa;
   /*font-family: 'Roboto', sans-serif;*/
   font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
   font-size: 14px;
@@ -37,6 +38,9 @@ header{
   position: absolute;
   width: 100%;
   top:0;
+}
+.content{
+  height: inherit;
 }
 h1{
   font-size: 24px;
@@ -70,8 +74,29 @@ a{
   color:#666;
   text-decoration: none;
 }
+a:hover{
+  color:#666;
+}
 li{
   list-style: none;
+}
+.btn{
+  font-size: 14px;
+}
+.form-control{
+  height: 34px;
+  font-size: 14px;
+}
+
+/* ----- 0. Modal ----- */
+.modal-dialog{
+  margin-top: 50px;
+}
+.modal-title{
+  font-size: 18px;
+}
+.close{
+  font-size: 24px;
 }
 
 /* ----- 0. Loading ----- */
@@ -210,7 +235,8 @@ header{
 }
 .form-label{
   margin-top:20px;
-  margin-bottom:5px
+  margin-bottom:5px;
+  font-weight: 400;
 }
 .option-text{
   padding-top:2px;
@@ -422,4 +448,33 @@ header{
 }
 .c-costs>span{
   color:#bcbcbc;
+}
+
+/* ----- 5. SKU ----- */
+.mandatory::after{
+  color: red;
+  content: " *";
+}
+.createdSku li{
+  margin-bottom:8px;
+}
+.createdSku .person{
+  color:#999;
+}
+.is-invalid{
+  border-color: red !important;
+}
+
+
+/* ----- 6. IFC ----- */
+#drop-area {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  height: 65px;
+  color:#999;
+}
+#drop-area.highlight {
+  background-color: #f7f7f7;
 }

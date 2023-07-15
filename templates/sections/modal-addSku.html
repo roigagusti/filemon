@@ -1,0 +1,125 @@
+<div id="addSku" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myModalLabel">Solicitar SKU</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <form method="post" action="add" id="form">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="control-label mandatory" for="mperson">¿Quién eres?</label>
+                                <input type="text" style="background-color:#eee;pointer-events:none;" class="form-control disabled" name="mperson" id="mperson">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="mandatory" for="mtype">Material type</label>
+                                <select class="form-control" name="mtype" id="mtype">
+                                    <option value="Material">Material</option>
+                                    <option value="Dummy">Dummy</option>
+                                    <option value="Budget Item">Budget Item</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label" for="mproject">Project number</label>
+                                <input type="number" class="form-control" name="mproject" id="mproject">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label" for="msimilar">Similar SKU</label>
+                                <input type="text" class="form-control" name="msimilar" id="msimilar" placeholder="ex. MBOA0869">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="control-label mandatory" for="mgroup">Group</label>
+                                <select class="form-control" name="mgroup" id="mgroup">
+                                    {% for group in materials %}
+                                        <option value="{{ group }}">{{ group }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <label class="control-label mandatory" for="mdescription">Description 1</label>
+                                <input type="text" class="form-control" name="mdescription" id="mdescription">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="control-label mandatory" for="munits">Units</label>
+                                <select class="form-control" name="munits" id="munits">
+                                    <option value="mL">mL</option>
+                                    <option value="m²">m²</option>
+                                    <option value="m³">m³</option>
+                                    <option value="u">U</option>
+                                    <option value="kg">kg</option>
+                                    <option value="l">l</option>
+                                    <option value="€/h">€/h</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-muted mb-2">No incluir los siguientes caracteres: \:{}[];<>?`~<br><br></p>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="mandatory" for="mmainmaterial">Main material</label>
+                                <input type="text" class="form-control" name="mmainmaterial" id="mmainmaterial">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="mandatory" for="mbrand">Brand</label>
+                                <input type="text" class="form-control" name="mbrand" id="mbrand">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label class="mandatory" for="mmodel">Model</label>
+                                <input type="text" class="form-control" name="mmodel" id="mmodel">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="control-label" for="minfo">Observaciones</label>
+                                <p class="text-muted mb-2">Información necesaria para el buyer</p>
+                                <input type="text" class="form-control" name="minfo" id="minfo">
+                            </div>
+                        </div>
+                    </div>
+                    
+                        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="submit" class="btn btn-011h waves-effect waves-light">Request</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

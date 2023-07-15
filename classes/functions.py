@@ -1,13 +1,31 @@
-from classes.private import atCredentials,apiCredentials
+from classes.private import atCredentials,apiCredentials,atCredentials_rompeflix,atCredentials_materials,atCredentials_sct
 from classes.Airtable import Airtable
 from classes.Rompetechos import RompetechosAPI
 
+# Connect to Airtable > Componentización Playground
+token,baseId = atCredentials()
+at = Airtable(token,baseId)
 
-token,base_id = atCredentials()
+# Connect to Airtable > Tech Business Suport
+token_staff,baseId_staff = atCredentials_rompeflix()
+at_staff = Airtable(token_staff,baseId_staff)
+
+# Connect to Airtable > Maestro materiales & Partidas
+token_material,baseId_material = atCredentials_materials()
+at_materials = Airtable(token_material,baseId_material)
+
+# Connect to Airtable > 011h Sistema Constructivo
+token_sct,baseId_sct = atCredentials_sct()
+at_sct = Airtable(token_sct,baseId_sct)
+
+# Connect to Rompetechos > API
 api_key,api_token = apiCredentials()
-at = Airtable(token,base_id)
 rt = RompetechosAPI(api_key,api_token)
+#rt.regenToken()
 
+
+
+# ----- EVOLUTION ----- #
 def coloreEU(EU):
     text = EU.split('_')
     output = []
@@ -58,7 +76,6 @@ def get_unique_components(data):
     return output
 
 def setCurrency(value):
-    # from float to string with two decimals, if value is null or empty, return '0,00'
     if value:
         output = '{:,.2f}'.format(float(value))
     else:
@@ -161,3 +178,77 @@ components = sort_components(components_notSorted)
 cases = extract_cases_of_study(components)
 projects = extract_projects(components)
 headers = get_unique_components(components)
+
+
+
+# ----- SKU ----- #
+def get011hTeam():
+    list = at_staff.list('staff')
+    names = []
+    supply = []
+    for element in list['records']:
+        name = element['fields']['name']
+        names.append(name)
+        if element['fields']['team'] == 'Supply Chain':
+            supply.append(name)
+    return names,supply
+
+def materialGroup():
+    list = at_materials.list('Material-Group',view='Grid view')
+    groups = []
+    for element in list['records']:
+        name = element['fields']['Group Long Name']
+        groups.append(name)
+    return groups
+
+def insertSKUrequested(data):
+    records = {
+        "requested_by": data[0],
+        "material_type": data[1],
+        "material_project": data[2],
+        "similar_to": data[3],
+        "material_group": data[4],
+        "material_description1": data[5],
+        "material_unit": data[6],
+        "main_material": data[7],
+        "material_brand": data[8],
+        "material_model": data[9],
+        "material_information": data[10]
+    }
+    inserted = at_sct.insert('Supply SKU requests', records)
+    if 'error' in inserted:
+        output = 'error'
+    else:
+        output = inserted['fields']['SKU_temporal']
+    return output        
+    
+def materialsList():
+    list = at_sct.list('Supply SKU requests')
+    if 'error' in list:
+        output = 'error'
+    elif 'records' not in list:
+        output = []
+    else:
+        output = list['records']
+    return output
+
+def excelMaterials(json):
+    output = []
+    for element in json:
+        record = element['fields']
+        if record['status'] == 'Pending':
+            sku = getProperty(record,'material_sku')
+            sku_temporal = getProperty(record,'SKU_temporal')
+            requested_by = getProperty(record,'requested_by')
+            material_type = getProperty(record,'material_type')
+            material_project = getProperty(record,'material_project')
+            similar_to = getProperty(record,'similar_to')
+            material_group = getProperty(record,'material_group')
+            material_description1 = getProperty(record,'material_description1')
+            material_unit = getProperty(record,'material_unit')
+            main_material = getProperty(record,'main_material')
+            material_brand = getProperty(record,'material_brand')
+            material_model = getProperty(record,'material_model')
+            material_information = getProperty(record,'material_information')
+            output.append([sku,sku_temporal,requested_by,material_type,material_project,similar_to,material_group,material_description1,material_unit,main_material,material_brand,material_model,material_information])
+    return output
