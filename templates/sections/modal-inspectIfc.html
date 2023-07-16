@@ -1,4 +1,4 @@
-<div id="uploadIfc" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="inspectIfc" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +8,7 @@
                 </button>
             </div>
             
-            <form method="post" action="ifc/analytics" enctype="multipart/form-data">
+            <form method="post" action="analytics" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-lg-12">
@@ -21,10 +21,21 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-lg-12">
-                            <label>Entidades a analizar</label>
+                            <label class="mandatory">Tipo de análisis</label>
+                            <select class="form-control" name="analysisType" id="analysisType" onchange="hideEntities(this)">
+                                <option value="inspect">Inspección de entidades</option>
+                                <option value="lod-350">LOD 350</option>
+                                <option value="lod-450">LOD 450</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row" id="entities-selector">
+                        <div class="col-lg-12 mt-4">
+                            <label class="mandatory">Entidades a analizar</label>
                         </div>
                         <div class="col-lg-12 entity-class">
                             <div class="form-check-inline">

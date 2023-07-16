@@ -2,8 +2,10 @@ import ifcopenshell
 import ifcopenshell.util.element
 import pandas as pd
 import openpyxl
+from classes.cadwork import unitaryTest450
 
 
+# CLASSES
 class PartialSegment:
     def __init__(self, guid: str, element: dict):
         self.Guid = guid
@@ -169,6 +171,8 @@ class MEPBox:
         self.QU_Width_m = getIFCinfo(element, "QU_Quantity", "QU_Width_m")
         self.QU_Thickness_m = getIFCinfo(element, "QU_Quantity", "QU_Thickness_m")
 
+
+# FUNCTIONS
 def getIFGguid(element: dict):
     return element.get_info().get('GlobalId', '')
 
@@ -285,16 +289,6 @@ def getIFCInfo(file_path,entities):
         {'name':'Partial segments','EI_type':'PartialSegment'}        
     ]
     
-    # if info_type == 'partialSegments':
-    #     entity = getElements(ifc_file,"PartialSegment",True)
-    # if info_type == 'layerGroups':
-    #     entity = getElements(ifc_file,"LayerGroup",True)
-    # if info_type == 'boxes':
-    #     entity = getElements(ifc_file,"ComponentJoint",True)
-    # if info_type == 'connections':
-    #     entity = getElements(ifc_file,"Connection",True)
-    
-    # excel = exportToExcel(entity,'static/export/export.xlsx',info_type)
     dfs = []
     sheets = []
     
@@ -307,3 +301,42 @@ def getIFCInfo(file_path,entities):
     
     excel = exportToExcel(dfs, 'static/export/export.xlsx', sheets)
     return excel
+
+
+def checkMandatoryProperties(element,group,properties):
+    psets = ifcopenshell.util.element.get_psets(element)
+    element = psets["EI_Elements Identification"]["EI_TypeID"]
+    errors = 0
+    reponse = ""
+    emptyProperties = []
+    for property in properties:
+        try:
+            psets[group][property]
+        except:
+            errors += 1
+            emptyProperties.append(property)
+    if len(emptyProperties) > 0:
+        reponse = "Property " + str(emptyProperties) + " not found in element " + psets["EI_Elements Identification"]["EI_TypeID"]
+    return element, reponse, errors
+
+def unitaryTest(file_path,testtype):
+    ifc_file = ifcopenshell.open(file_path)
+    elements = ifc_file.by_type('IfcWall')
+
+    if testtype == "lod-350":
+        mandatoryProperties = ["EI_Type","EI_LocalisationCodeFloor","EI_TypeID","EI_InstanceID","EI_Description"]
+        output = ["LOD 350 test"]
+        
+        for element in elements:
+            element, reponse, errors = checkMandatoryProperties(element,"EI_Elements Identification",mandatoryProperties)
+            if errors > 0:
+                output.append(element + " " + reponse)
+            else:
+                output.append(element + " Everything OK!")
+    else:
+        mandatoryProperties = ["EI_Type","EI_LocalisationCodeFloor","EI_TypeID","EI_InstanceID","EI_Description"]
+        output = ["LOD 450 test"]
+        test = unitaryTest450(file_path)
+        output.append(test)
+        
+    return output
