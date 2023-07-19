@@ -35,6 +35,18 @@
     <div class="content">
         <div id="layout-wrapper">
             <div class="page-content">
+                <div id="subheader">
+                    <ul class="nav-subheader">
+                        {% set component_classes = ['FAC','EIV'] %}
+                        {% for class in component_classes %}
+                            {% if class == component_class %}
+                                <li class="active">{{ class }}</li>
+                            {% else %}
+                                <li><a href="{{ url_for('kpi', parameter=class) }}">{{ class }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">

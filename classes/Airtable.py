@@ -16,7 +16,6 @@ class Airtable:
         if fields != None:
             for field in fields:
                 params['fields[]'] = field
-            
         data = []
 
         while True:

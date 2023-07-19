@@ -47,7 +47,7 @@ def coloreEU(EU):
     return output_string
 
 def filter_projects(projects):
-    info = {'2116. Casernes J': 'bg-yellow', '2201. Distrito Z': 'bg-green', '2301. Calonge': 'bg-blue'}
+    info = {'2116. Casernes J': 'bg-yellow', '2201. Distrito Z': 'bg-green', '2301. Calonge': 'bg-orange'}
     output = {project: info[project] for project in projects if project in info}
     return output
 
@@ -56,7 +56,7 @@ def extract_cases_of_study(data):
     return cases_of_study
 
 def extract_projects(data):
-    info = {'2116. Casernes J': 'bg-yellow', '2201. Distrito Z': 'bg-green', '2301. Calonge': 'bg-blue'}
+    info = {'2116. Casernes J': 'bg-yellow', '2201. Distrito Z': 'bg-green', '2301. Calonge': 'bg-orange'}
     projects = {}
     for case in data.keys():
         for project in data[case].keys():
@@ -166,18 +166,21 @@ def sort_components(components):
         sorted_components[case_type] = sorted_projects
     return sorted_components
 
-def getAT():
-    atlist = at.list('RL_Case-Component')
+def getAT(filter=None):
+    atlist = at.list('RL_Case-Component',filter=filter)
     return atlist
 
+def evolution(filter):
+    filtrat = "type='" + filter + "'"
+    json_data = getAT(filtrat)
+    components_notSorted = convert_json(json_data)
+    components = sort_components(components_notSorted)
 
-json_data = getAT()
-components_notSorted = convert_json(json_data)
-components = sort_components(components_notSorted)
-
-cases = extract_cases_of_study(components)
-projects = extract_projects(components)
-headers = get_unique_components(components)
+    cases = extract_cases_of_study(components)
+    projects = extract_projects(components)
+    headers = get_unique_components(components)
+    
+    return components,cases,projects,headers
 
 
 

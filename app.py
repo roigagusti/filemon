@@ -44,14 +44,16 @@ def prova():
 # ----- PRODUCCIÓ -----
 @app.route('/index')
 def index():
-    return redirect(url_for('kpi'))
+    return redirect(url_for('kpi', parameter='FAC'))
+
 
 # KPI
-@app.route('/components')
-def kpi():
+@app.route('/components/<parameter>')
+def kpi(parameter='FAC'):
     if not session.get("user"):
         return redirect(url_for("login"))
-    return render_template('evolution.html',components=components,cases=cases,projects=projects,headers=headers)
+    components,cases,projects,headers = evolution(parameter)
+    return render_template('evolution.html',components=components,cases=cases,projects=projects,headers=headers,component_class=parameter)
 
 #SKU REQUEST
 @app.route('/sku/request')

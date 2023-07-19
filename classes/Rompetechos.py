@@ -8,13 +8,10 @@ class RompetechosAPI():
         self.api_token = api_token
     
     def regenToken(self):
-        url = "https://www.rompetechos.011h.com/support/admin/user/auth/regenerate_jwtoken"
+        url = "https://www.rompetechos.011h.com/api/support-admin/user/auth/regenerate_jwtoken"
         header = {'Cookie': 'something'}
         body = {"token": self.api_token}
         response = requests.post(url, json=body, headers=header)
-        data = response.json()
-        self.api_token = data
-        pass
     
     def get(self,component=''):
         if component == '':

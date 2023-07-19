@@ -315,6 +315,27 @@ header{
 }
 
 /* ----- 4. Comparatiu ----- */
+#subheader{
+  margin:0;
+  padding: 0;
+  font-size:14px;
+  height: 0;
+  float:right;
+  text-align: right;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+.nav-subheader li{
+  display: inline-block;
+  margin-right: 20px;
+  text-transform: uppercase;
+  color:#495057;
+}
+.nav-subheader .active{
+  color:#487767;
+  font-weight: 700;
+}
 .case_of_study{
   margin-bottom: 80px;
 }
