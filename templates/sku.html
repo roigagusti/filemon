@@ -45,13 +45,8 @@
                             <!-- Quien eres -->
                             <div class="form-group"> 
                                 <div class="form-group">
-                                    <label for="who" class="form-label mandatory">¿Quién eres?</label>
-                                    <select class="form-control" name="who" id="quienEres" style="height: 34px;font-size:14px" required>
-                                        <option value="0">Selecciona una opción</option>
-                                        {% for name in staff %}
-                                            <option value="{{ name }}">{{ name }}</option>
-                                        {% endfor %}
-                                    </select>
+                                    <label for="who" class="form-label">¿Quién eres?</label>
+                                    <input type="text" style="background-color:#eee;pointer-events:none;" class="form-control disabled" name="who" id="quienEres" value="{{ name }}">
                                 </div>
                             </div>                              
 
@@ -119,10 +114,9 @@
         $("div.responsive-blur").hasClass("hidden") ? $("div.responsive-blur").removeClass("hidden") : $("div.responsive-blur").addClass("hidden");
         $("div.menu").hasClass("hidden") ? $("div.menu").removeClass("hidden") : $("div.menu").addClass("hidden");
     }
-    // Copiar quien eres
-    $("#quienEres").change(function(){
-        var selectedValue = $(this).val();
-        $("#mperson").val(selectedValue).attr("content", selectedValue);
+    // When site is full charged ...
+    $(document).ready(function() {
+        var selectedValue = "{{ name }}";
         
         var key = 'patTL8BTVtTu5NsaV.fca1e6dcce97d7a5ea038df21d0d808241e87d5bf844167ceea2b1eec3cc81e4';
         var url = 'https://api.airtable.com/v0/appnnVM2i5l7Aj25U/Supply%20SKU%20requests';
@@ -142,9 +136,22 @@
             var i = 0;
             data.records.forEach(record => {
                 const status = record.fields.status;
-                const sku = status === 'Pending' ? record.fields.SKU_temporal : record.fields.material_sku;
+                const sku = status === 'Created' ? record.fields.material_sku : record.fields.SKU_temporal;
                 const description = record.fields.material_description1;
-                const statusColor = status === 'Pending' ? 'bg-yellow' : 'bg-green';
+                var statusColor = '';
+                switch (status) {
+                    case 'Pending':
+                        statusColor = 'bg-yellow';
+                        break;
+                    case 'Created':
+                        statusColor = 'bg-green';
+                        break;
+                    case 'Rejected':
+                        statusColor = 'bg-red';
+                        break;
+                    default:
+                        statusColor = 'bg-yellow';
+                }
                 
                 html += `<li><a class="list-color ${statusColor}">${sku}</a> ${description}</li>`;
                 i++;

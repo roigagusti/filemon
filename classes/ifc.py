@@ -273,7 +273,11 @@ def exportToExcel(df, fileName, sheetName):
             data.to_excel(writer, sheet_name=sheet)
     else:
         df.to_excel(writer, sheet_name=sheetName)
-    writer.save()
+    try:
+        writer.save()
+    except:
+        print('No data to save')
+        
     
 def getIFCInfo(file_path,entities):
     ifc_file = ifcopenshell.open(file_path)

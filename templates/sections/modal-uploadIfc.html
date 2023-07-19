@@ -1,0 +1,79 @@
+<div id="uploadIfc" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myModalLabel">Subir archivo IFC</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <form method="post" action="ifc/analytics" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="mandatory">Seleccionar archivo</label>
+                                <input type="file" accept=".ifc" class="form-control hidden" name="ifcfile" id="fileinput">
+                            </div>
+                            <div class="file-upload-wrapper" id="drop-area">
+                                Arrastra un archivo IFC o haz click para seleccionarlo
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label>Entidades a analizar</label>
+                        </div>
+                        <div class="col-lg-12 entity-class">
+                            <div class="form-check-inline">
+                                <input type="number" class="hidden" id="entity_C" name="entity_C" value="1">
+                                <label class="btn btn-entity selected-entity" for="entity_C" onclick="changeValue(this)">Component</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="number" class="hidden" id="entity_EU" name="entity_EU" value="1">
+                                <label class="btn btn-entity selected-entity" for="entity_EU" onclick="changeValue(this)">Execution Unit</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="number" class="hidden" id="entity_LG" name="entity_LG" value="1"> 
+                                <label class="btn btn-entity selected-entity" for="entity_LG" onclick="changeValue(this)">Layer Group</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 entity-class">
+                            <div class="form-check-inline">
+                                <input type="number" class="hidden" id="entity_OP" name="entity_OP" value="0">
+                                <label class="btn btn-entity" for="entity_OP" onclick="changeValue(this)">Opening</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="number" class="hidden" id="entity_MEPbox" name="entity_MEPBox" value="0">
+                                <label class="btn btn-entity" for="entity_MEPbox" onclick="changeValue(this)">MEP box</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 entity-class">
+                            <div class="form-check-inline">
+                                <input type="number" class="hidden" id="entity_Box" name="entity_Box" value="0">
+                                <label class="btn btn-entity" for="entity_Box" onclick="changeValue(this)">Joint box</label>
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="number" class="hidden" id="entity_H" name="entity_H" value="0">
+                                <label class="btn btn-entity" for="entity_H" onclick="changeValue(this)">Connection</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 entity-class">
+                            <div class="form-check-inline">
+                                <input type="number" class="hidden" id="entity_PS" name="entity_PS" value="0">
+                                <label class="btn btn-entity" for="entity_PS" onclick="changeValue(this)">Partial Segment</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-011h waves-effect waves-light">Subir</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
